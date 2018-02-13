@@ -155,9 +155,10 @@ body {
   height: 100%;
   font-size: 14px; }
   body .ant-layout {
-    height: 100vh !important; }
+    height: 100vh !important;
+    background-color: #1d1f21 !important; }
     body .ant-layout .ant-content {
-      background-color: #fff; }
+      background-color: #1d1f21 !important; }
 
 .input-search__huge {
   height: 46px; }
@@ -217,10 +218,6 @@ body {
 body {
   height: 100%;
   font-size: 14px; }
-  body .ant-layout {
-    height: 100vh !important; }
-    body .ant-layout .ant-content {
-      background-color: #fff; }
   body .hero {
     display: flex;
     flex-direction: column;

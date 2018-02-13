@@ -4,9 +4,10 @@ body {
 
   .ant-layout {
     height: 100vh !important;
+    background-color: $color-background-primary !important;
 
     .ant-content {
-      background-color: $color-white;
+      background-color: $color-background-primary !important;
     }
   }
 }

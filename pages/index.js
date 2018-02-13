@@ -63,11 +63,11 @@ import marked from "marked"
 import hljs from "highlight.js"
 
 
-// marked.setOptions({
-//   highlight: function (code) {
-//     return hljs.highlightAuto(code).value
-//   }
-// })
+marked.setOptions({
+  highlight: function (code) {
+    return hljs.highlightAuto(code).value
+  }
+})
 
 import Notification from "components/Notification"
 import { authGetInfo } from "actions"
@@ -82,10 +82,6 @@ class Index extends React.Component {
     store.dispatch(authGetInfo(sendString))
 
     return {isServer: ctx.isServer}
-  }
-
-  componentDidMount() {
-    // hljs.initHighlightingOnLoad()
   }
 
   render() {
@@ -107,7 +103,7 @@ class Index extends React.Component {
             </div>
           </div>
         </div>
-        <div style={{ maxWidth: 700, margin: "auto" }}>
+        <div className="markdown-content" style={{ maxWidth: 700, margin: "auto" }}>
           <div dangerouslySetInnerHTML={{__html: marked(md)}} />
         </div>
       </div>

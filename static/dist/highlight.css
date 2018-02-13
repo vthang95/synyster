@@ -1,3 +1,8 @@
+a, a:visited, a:hover, a:active {
+    text-decoration: underline;
+    color: inherit;
+}
+
 .inline {
   display: inline;
 }
@@ -472,7 +477,7 @@ body {
 }
 .content a {
   text-decoration: none;
-  color: #c9cacc;
+  color: #fff;
   background-repeat: repeat-x;
   background-position: bottom;
   background-size: 100% 6px;
@@ -1371,7 +1376,7 @@ pre {
   background: #212326;
   font-family: "Menlo", "Meslo LG", monospace;
   font-size: 13px;
-  padding: 10px 15px;
+  padding: 28px;
   line-height: 22px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
