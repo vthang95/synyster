@@ -1,0 +1,30 @@
+{
+  "plugins": [
+    [
+      "wrap-in-js",
+      {
+        "extensions": ["css$", "scss$"]
+      }
+    ],
+    [
+      "module-resolver", {
+        "root": ["."],
+        "alias": {
+          "styles": "./styles"
+        },
+        "cwd": "babelrc"
+    }],
+    ["lodash"],
+    [
+      "import", {
+        "libraryName": "antd"
+      }
+    ]
+  ],
+  "presets": [
+    "next/babel",
+    "react",
+    "stage-0"
+  ],
+  "ignore": []
+}
