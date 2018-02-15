@@ -1,8 +1,5 @@
 const md = `
----
-title: Hello World
----
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
+Welcome to [vthang95](https://githun.com/vthang95)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
 ## Quick Start
 
@@ -62,16 +59,16 @@ import { Button } from "antd"
 import marked from "marked"
 import hljs from "highlight.js"
 
+import Notification from "components/Notification"
+import { authGetInfo } from "actions"
+import { pageWrapper } from "utils/wrapper"
 
+// configuration
 marked.setOptions({
   highlight: function (code) {
     return hljs.highlightAuto(code).value
   }
 })
-
-import Notification from "components/Notification"
-import { authGetInfo } from "actions"
-import { pageWrapper } from "utils/wrapper"
 
 class Index extends React.Component {
   static async getInitialProps(ctx) {
@@ -87,22 +84,6 @@ class Index extends React.Component {
   render() {
     return (
       <div>
-        <div className="hero">
-          <div className="hero-body">
-            <h1>Welcome to the boilerplate!</h1>
-            <h3>{this.props.auth.info}</h3>
-            <div>
-              <Button
-                type="danger"
-                style={{ marginTop: 20 }}
-                onClick={() => Notification.success("Yay!", "You clicked!")}
-              >
-                Click Me!!
-              </Button>
-
-            </div>
-          </div>
-        </div>
         <div className="markdown-content" style={{ maxWidth: 700, margin: "auto" }}>
           <div dangerouslySetInnerHTML={{__html: marked(md)}} />
         </div>

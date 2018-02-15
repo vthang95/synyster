@@ -31,9 +31,9 @@ const bigdaddy = OurChildComponent => {
             {/*<script>;</script>*/}
           </Head>
           <LocaleProvider locale={vi}>
-            <MainLayout>
+            {/*<MainLayout>*/}
               <OurChildComponent { ...this.props } />
-            </MainLayout>
+            {/*</MainLayout>*/}
           </LocaleProvider>
         </div>
       )

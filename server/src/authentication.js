@@ -1,7 +1,8 @@
-const jwt = require('jsonwebtoken')
-const _ = require('lodash')
+const jwt = require("jsonwebtoken")
+const _ = require("lodash")
 
-const User = require('./api/users/user.schema')
+const User = require("./api/users/user.schema")
+const { Roles } = require("./enums")
 
 const getUserForm = ({ email, username, _id }) => {
   return {
@@ -19,11 +20,11 @@ const isAuthServer = (req, res, next) => {
   if (req.cookies && req.cookies.token) {
 
     jwt.verify(req.cookies.token, process.env.SESSION_SECRET, (err, decoded) => {
-      if (err) return res.redirect('/admin/login')
+      if (err) return res.redirect("/admin/login")
       let userFormData = getUserForm(decoded)
       User.findOne({ _id: userFormData._id })
         .exec((err, exist) => {
-          if (err) return res.redirect('/admin/login')
+          if (err) return res.redirect("/admin/login")
           if (exist) {
             let userServer = {
               _id: exist._id,
@@ -35,24 +36,24 @@ const isAuthServer = (req, res, next) => {
             req.userServer = userServer
             return next()
           }
-          return res.redirect('/admin/login')
+          return res.redirect("/admin/login")
         })
     })
   } else {
-    return res.redirect('/admin/login')
+    return res.redirect("/admin/login")
   }
 }
 
 const isAuthApi = (req, res, next) => {
-  if (req.headers && req.headers['authorization']) {
-    const bearerToken = req.headers['authorization'].split(' ')
-    if (bearerToken[0] !== 'Bearer') return res.json({ success: false, msg: 'Authentication Failed' })
+  if (req.headers && req.headers["authorization"]) {
+    const bearerToken = req.headers["authorization"].split(" ")
+    if (bearerToken[0] !== "Bearer") return res.json({ success: false, msg: "Authentication Failed" })
     jwt.verify(bearerToken[1], process.env.SESSION_SECRET, (err, decoded) => {
-      if (err) return res.json({ success: false, msg: 'Authentication Failed' })
+      if (err) return res.json({ success: false, msg: "Authentication Failed" })
       let userFormData = getUserForm(decoded)
       User.findOne({ _id: userFormData._id })
         .exec((err, exist) => {
-          if (err) return res.json({ success: false, msg: 'Authentication Failed' })
+          if (err) return res.json({ success: false, msg: "Authentication Failed" })
           if (exist) {
             let user = {
               _id: exist._id,
@@ -63,39 +64,28 @@ const isAuthApi = (req, res, next) => {
             req.user = user
             return next()
           }
-          return res.json({ success: false, msg: 'Authentication Failed' })
+          return res.json({ success: false, msg: "Authentication Failed" })
         })
     })
   } else {
-    return res.json({ success: false, msg: 'Authentication Failed' })
+    return res.json({ success: false, msg: "Authentication Failed" })
   }
 }
 
 const isAuthorized = roles => {
-  let permission = {
-    user: 0,
-    moderator: 1,
-    admin: 9
-  }
   return (req, res, next) => {
-    let condition = _.some(roles, (role) => req.user.role === permission[role])
+    let condition = _.some(roles, (role) => req.user.role === Roles[role])
 
     if (condition) return next()
-    return res.json({ success: false, message: 'Permission denied', error: null })
+    return res.json({ success: false, message: "Permission denied", error: null })
   }
 }
 
 const isAuthorizedServer = roles => {
-  let permission = {
-    user: 0,
-    moderator: 1,
-    admin: 9
-  }
-
   return (req, res, next) => {
-    let condition = _.some(roles, (role) => req.userServer.role === permission[role])
+    let condition = _.some(roles, (role) => req.userServer.role === Roles[role])
     if (condition) return next()
-    return res.send('<h1>Permission denied</h1>')
+    return res.send("<h1>Permission denied</h1>")
   }
 }
 
