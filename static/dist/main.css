@@ -246,6 +246,8 @@ body {
       width: 50%;
       margin: auto;
       align-items: center; }
+  body .main-layout {
+    padding: 5px; }
 
 .syn-wrapper {
   margin: 10px; }

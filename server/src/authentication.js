@@ -20,11 +20,11 @@ const isAuthServer = (req, res, next) => {
   if (req.cookies && req.cookies.token) {
 
     jwt.verify(req.cookies.token, process.env.SESSION_SECRET, (err, decoded) => {
-      if (err) return res.redirect("/admin/login")
+      if (err) return res.redirect("/manage/login")
       let userFormData = getUserForm(decoded)
       User.findOne({ _id: userFormData._id })
         .exec((err, exist) => {
-          if (err) return res.redirect("/admin/login")
+          if (err) return res.redirect("/manage/login")
           if (exist) {
             let userServer = {
               _id: exist._id,
@@ -36,11 +36,11 @@ const isAuthServer = (req, res, next) => {
             req.userServer = userServer
             return next()
           }
-          return res.redirect("/admin/login")
+          return res.redirect("/manage/login")
         })
     })
   } else {
-    return res.redirect("/admin/login")
+    return res.redirect("/manage/login")
   }
 }
 

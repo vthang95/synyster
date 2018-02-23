@@ -10,11 +10,11 @@ module.exports = {
     config.devtool = false
 
     // disable soucemaps of babel-loader
-    for (const r of config.module.rules) {
-      if (r.loader === 'babel-loader') {
-        r.options.sourceMaps = false
-      }
-    }
+    // for (const r of config.module.rules) {
+    //   if (r.loader === 'babel-loader') {
+    //     r.options.sourceMaps = false
+    //   }
+    // }
 
     config.resolve = {
       modules: ["pages", "node_modules"],

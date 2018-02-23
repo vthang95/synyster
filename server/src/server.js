@@ -17,6 +17,7 @@ const morganMode = dev ? "dev" : "common"
 const mongodbURI = dev ? "mongodb://localhost:27017/synyster" : "mongodb://localhost:27017/synyster"
 
 const controller = require("./global-controller")
+const auth = require("./authentication")
 
 /**
  * Routers
@@ -53,6 +54,10 @@ app.prepare()
       if (dev) req.app = app
       next()
     })
+
+    server.get("/manage/login", controller.handleNormalRequest)
+    server.get("/manage/signup", controller.handleNormalRequest)
+    server.get("/manage", auth.isAuthServer, controller.handleNormalRequest)
 
     server.get("*", controller.handleNormalRequest)
 
