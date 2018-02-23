@@ -14,14 +14,15 @@ const dev = process.env.NODE_ENV !== "production"
 
 const app = next({ dev })
 const morganMode = dev ? "dev" : "common"
-const mongodbURI = dev ? "mongodb://localhost:27017/boilerplate" : "mongodb://localhost:27017/boilerplate"
+const mongodbURI = dev ? "mongodb://localhost:27017/synyster" : "mongodb://localhost:27017/synyster"
 
 const controller = require("./global-controller")
 
 /**
  * Routers
  */
-const userRouter = require('./api/users')
+const userRouter = require("./api/users")
+const categoryRouter = require("./api/categories")
 
 app.prepare()
   .then(() => {
@@ -35,6 +36,7 @@ app.prepare()
         console.log("%s MongoDB connection error! Please make sure MongoDB is running", chalk.red("✗"))
       })
 
+
     server.set("port", process.env.PORT || 8090)
     server.use(cookieParser())
     server.use(compression())
@@ -42,8 +44,10 @@ app.prepare()
     server.use(bodyParser.json())
     server.use(bodyParser.urlencoded({ extended: true }))
     server.use(expressValidator())
+    server.locals.pretty = true
 
-    server.use('/api/users', userRouter)
+    server.use("/api/users", userRouter)
+    server.use("/api/categories", categoryRouter)
 
     server.use((req, res, next) => {
       if (dev) req.app = app

@@ -4,7 +4,8 @@ const PostSchema = new mongoose.Schema({
   title: { type: String, required: true },
   slug: { type: String, required: true },
   content: { type: String },
-  isActived: { type: Boolean, default: true },
+  isDeleted: { type: Boolean, default: false },
+  isHidden: { type: Boolean, default: false },
   tags: [{ type: Schema.Types.ObjectId, ref: "tags" }]
 }, { timestamps: true })
 

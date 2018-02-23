@@ -4,11 +4,11 @@ const { omit } = require("lodash")
 const auth = require("../../authentication")
 const User = require("./user.dao")
 
-exports.getMe = (req, res) => {
+const getMe = (req, res) => {
   return res.json({ success: true, msg: "Ok!" })
 }
 
-exports.postLogin = (req, res) => {
+const postLogin = (req, res) => {
   req.checkBody("email", "Email is not empty!").notEmpty()
   req.checkBody("password", "Password is not empty!").notEmpty()
 
@@ -35,18 +35,18 @@ exports.postLogin = (req, res) => {
         createdAt: result.doc.createdAt
       }
 
-      res.cookie("token", token, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true })
+      res.cookie("token", token, { maxAge: 60 * 60 * 24, httpOnly: true })
       return res.json({ success: true, msg: "Login successfully!", token, user })
     }
   )
 }
 
-exports.postLogout = (req, res) => {
+const postLogout = (req, res) => {
   res.clearCookie("token")
   res.json({ success: true, msg: "Ok!" })
 }
 
-exports.postSignup = (req, res) => {
+const postSignup = (req, res) => {
   req.checkBody("email", "Email is not empty!").notEmpty()
   req.checkBody("username", "Username is not empty!").notEmpty()
   req.checkBody("password", "Password is not empty!").notEmpty()
@@ -58,7 +58,7 @@ exports.postSignup = (req, res) => {
 
   if (errors) return res.status(422).json({ success: false, msg: "Bad Argument", errors })
 
-  let userToSave = {
+  const userToSave = {
     email: req.body.email,
     username: req.body.username,
     password: req.body.password
@@ -71,7 +71,14 @@ exports.postSignup = (req, res) => {
     ],
     (err, result) => {
       if (err) return res.json({ success: false, errors: err })
-      return res.json({ success: true, user: { username: result.username, email: result.email } })
+      return res.status(201).json({ success: true, user: { username: result.username, email: result.email } })
     }
   )
+}
+
+module.exports = {
+  getMe,
+  postLogin,
+  postLogout,
+  postSignup
 }

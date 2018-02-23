@@ -3,8 +3,11 @@ const mongoose = require("mongoose")
 const CategorySchema = new mongoose.Schema({
   name: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
-  isActived: { type: Boolean, default: true }
-  posts: [{ type: Schema.Types.ObjectId, ref: "posts" }],
+  description: { type: String },
+  isHidden: { type: Boolean, default: false },
+  isDeleted: { type: Boolean, default: false },
+  createdBy  : { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "posts" }],
 }, { timestamps: true })
 
 module.exports = mongoose.model("categories", CategorySchema)

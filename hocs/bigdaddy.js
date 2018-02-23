@@ -25,8 +25,8 @@ const bigdaddy = OurChildComponent => {
             <meta name="description" content="A boilerplate for server side rendering with react and nextjs" />
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/paraiso-dark.min.css" />
-            {/*<link href="/static/css/antd.min.css" rel="stylesheet" />*/}
             <link href="/static/dist/highlight.css" rel="stylesheet" />
+            <link href="/static/dist/main.css" rel="stylesheet" />
             <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
             {/*<script>;</script>*/}
           </Head>
