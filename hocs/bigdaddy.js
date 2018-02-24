@@ -15,11 +15,14 @@ nprogress.configure({ showSpinner: false, easing: 'ease', speed: 800 });
 const bigdaddy = OurChildComponent => {
   class HigherOrderComponent extends Component {
     static async getInitialProps(ctx) {
-      let isAuthServer = false, isInAdminPage = false
+      let isAuthServer = false, isInAdminPage = false, verifiedUser
       if (isInManagementPage(ctx)) {
         isInAdminPage = true
         let user = getUserFromRequest(ctx.req)
-        if (user) isAuthServer = true
+        if (user) {
+          isAuthServer = true
+          verifiedUser = user
+        }
         // TODO: check: if isAuthServer but lost info in localStorage -> rewrite
         if (!user && !ctx.isServer) Router.replace("/manage/login")
       }
@@ -27,7 +30,21 @@ const bigdaddy = OurChildComponent => {
       const childProps = OurChildComponent.getInitialProps ? await OurChildComponent.getInitialProps(ctx) : {}
 
 
-      return { ...childProps, isAuthServer, isInAdminPage }
+      return { ...childProps, isAuthServer, isInAdminPage, verifiedUser }
+    }
+
+    componentDidMount() {
+      const { isAuthServer, verifiedUser } = this.props
+      const user = localStorage.getItem("user")
+      const token = localStorage.getItem("token")
+
+      if (isAuthServer && (!user || !token)) {
+        localStorage.setItem("user", JSON.stringify(verifiedUser))
+        localStorage.setItem("token", verifiedUser.token)
+      } else if (!isAuthServer) {
+        localStorage.removeItem("user")
+        localStorage.removeItem("token")
+      }
     }
 
     renderChildren = () => {

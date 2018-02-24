@@ -67,28 +67,6 @@ class Index extends React.Component {
   }
 }
 
-// const md = `
-// ## Quick Start
-
-// \`\`\` js
-// var i = 0
-// function goAway(arg) {
-//   let a = {}
-//   a.b = "b"
-
-//   return a
-// }
-// \`\`\`
-
-// \`\`\` ruby
-// def serve_drinks(%User{age: age}) when age >= 21 do
-//   # Code that serves drinks!
-// end
-
-// serve_drinks User.get("John Doe")
-// \`\`\`
-// `
-
 const mapStateToProps = state => {
   return {
     categories: state.categories.ui,

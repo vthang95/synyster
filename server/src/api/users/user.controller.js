@@ -35,7 +35,7 @@ const postLogin = (req, res) => {
         createdAt: result.doc.createdAt
       }
 
-      res.cookie("token", token, { maxAge: 100 * 60 * 60 * 24, httpOnly: true })
+      res.cookie("token", token, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true })
       return res.json({ success: true, msg: "Login successfully!", token, user })
     }
   )
