@@ -14,9 +14,10 @@ const dev = process.env.NODE_ENV !== "production"
 
 const app = next({ dev })
 const morganMode = dev ? "dev" : "common"
-const mongodbURI = dev ? "mongodb://localhost:27017/synyster" : "mongodb://localhost:27017/synyster"
+const mongodbURI = dev ? process.env.DB_DEV : process.env.DB_PROD
 
 const controller = require("./global-controller")
+const categoryController = require("./api/categories/category.controller")
 const auth = require("./authentication")
 
 /**
@@ -24,6 +25,7 @@ const auth = require("./authentication")
  */
 const userRouter = require("./api/users")
 const categoryRouter = require("./api/categories")
+const postRouter = require("./api/posts")
 
 app.prepare()
   .then(() => {
@@ -37,7 +39,6 @@ app.prepare()
         console.log("%s MongoDB connection error! Please make sure MongoDB is running", chalk.red("✗"))
       })
 
-
     server.set("port", process.env.PORT || 8090)
     server.use(cookieParser())
     server.use(compression())
@@ -48,7 +49,8 @@ app.prepare()
     server.locals.pretty = true
 
     server.use("/api/users", userRouter)
-    server.use("/api/categories", categoryRouter)
+    server.use("/api/categories", auth.isAuthApi, categoryRouter)
+    server.use("/api/posts", auth.isAuthApi, postRouter)
 
     server.use((req, res, next) => {
       if (dev) req.app = app
@@ -58,6 +60,8 @@ app.prepare()
     server.get("/manage/login", controller.handleNormalRequest)
     server.get("/manage/signup", controller.handleNormalRequest)
     server.get("/manage", auth.isAuthServer, controller.handleNormalRequest)
+
+    server.get("/", controller.middlewareGetHomepage, controller.handleNormalRequest)
 
     server.get("*", controller.handleNormalRequest)
 

@@ -6,6 +6,8 @@ const { Roles } = require("../../enums")
 const UserSchema = new mongoose.Schema({
   username : { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
+  bio: { type: String },
+  avatarUrl: { type: String },
   password : { type: String, required: true },
   role     : { type: Number, default: Roles["user"] },
 }, { timestamps: true })

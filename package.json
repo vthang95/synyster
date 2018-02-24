@@ -7,8 +7,8 @@
     "build": "next build && npm run build:scss",
     "build:scss": "node-sass styles/main.scss static/dist/main.css",
     "build-scss:watch": "node-sass -w styles/ -o static/dist/",
-    "dev": "cross-env NODE_ENV=devolopment SESSION_SECRET=reactnextboilerplate nodemon --watch ./server/src ./server/src/server.js & npm run build-scss:watch",
-    "start": "cross-env NODE_ENV=production SESSION_SECRET=reactnextboilerplate node ./server/src/server.js",
+    "dev": "cross-env NODE_ENV=devolopment nodemon --watch ./server/src ./server/src/server.js & npm run build-scss:watch",
+    "start": "cross-env NODE_ENV=production node ./server/src/server.js",
     "analyze": "cross-env ANALYZE=1 next build",
     "heroku-postbuild": "rm -fr ./build & next build",
     "deploy-heroku": "git push heroku master"
@@ -42,7 +42,7 @@
     "chalk": "^2.3.0",
     "compression": "^1.7.1",
     "cookie-parser": "^1.4.3",
-    "dotenv": "^4.0.0",
+    "dotenv": "^5.0.0",
     "express": "^4.16.2",
     "express-validator": "^4.3.0",
     "highlight.js": "^9.12.0",
@@ -61,7 +61,8 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.1"
+    "reselect": "^3.0.1",
+    "speakingurl": "^14.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.6",
