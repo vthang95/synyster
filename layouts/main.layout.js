@@ -1,12 +1,13 @@
 import { Component } from "react"
 import { connect } from "react-redux"
+import Router from "next/router"
 
 class MainLayout extends Component {
   render() {
     return (
       <div className="main-layout">
         <div className="main-layout-bio" style={{ textAlign: "center", margin: 30 }}>
-          <h1>cactus</h1>
+          <h1 onClick={() => Router.push("/")}>cactus</h1>
           <div className="bio-text" style={{ maxWidth: 500, margin: "auto" }}>
             Welcome to my blog! This is your very first post. Check documentation for more info.
             If you get any problems when using Synyster, you can find the answer in troubleshooting or you can ask me on GitHub.

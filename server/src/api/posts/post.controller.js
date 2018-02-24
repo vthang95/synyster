@@ -1,5 +1,6 @@
 const getSlug = require("speakingurl")
 
+// TODO: move all schemas to dao
 const Post = require("./post.dao")
 const PostSchema = require("./post.schema")
 
@@ -19,7 +20,21 @@ const _getListOfPosts = (callback) => {
   })
 }
 
-const getSinglePost = (req, res) => {}
+const getSinglePost = (req, res) => {
+  const { postSlug } = req.params
+
+  Post.getSinglePostBySlug(postSlug, (err, { success, status, msg, errors, doc }) => {
+    if (err || success === false) return res.status(status).json({ success, msg, errors })
+    return res.status(200).json({ success, msg, doc })
+  })
+}
+
+const _getSinglePost = (postSlug, callback) => {
+  Post.getSinglePostBySlug(postSlug, (err, { success, status, msg, errors, doc }) => {
+    if (err) return callback(err, null)
+    return callback(null, { success, status, msg, doc })
+  })
+}
 
 const createPost = (req, res) => {
   req.checkBody("title", "Post title is required!").notEmpty()
@@ -42,7 +57,29 @@ const createPost = (req, res) => {
   })
 }
 
-const editPost = (req, res) => {}
+const editPost = (req, res) => {
+  req.checkBody('title', 'Post title is required').notEmpty()
+
+  const errors = req.validationErrors(req)
+  if (errors) return res.status(422).json({ success: false, msg: 'Bad Argument', errors })
+
+  const createdBy = req.user._id
+  const postId = req.params.postId
+  const { title, content, category } = req.body
+  const post = {
+    _id: postId,
+    title,
+    content,
+    category,
+    createdBy,
+    slug: getSlug(title, { lang: process.env.SITE_LANGUAGE || "vn" })
+  }
+
+  Post.updatePostById(post, (err, { success, status, msg, errors, doc }) => {
+    if (err || success === false) return res.status(status).json({ success, msg, errors })
+    return res.status(200).json({ success, msg, doc })
+  })
+}
 
 const deletePost = (req, res) => {}
 
@@ -52,6 +89,7 @@ module.exports = {
   getListOfPosts,
   _getListOfPosts,
   getSinglePost,
+  _getSinglePost,
   createPost,
   editPost,
   deletePost,

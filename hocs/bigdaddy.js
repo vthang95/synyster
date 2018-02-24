@@ -3,10 +3,14 @@ import Head from "next/head"
 import vi from "antd/lib/locale-provider/en_US"
 import { LocaleProvider } from "antd"
 import Router from "next/router"
+import nprogress from 'nprogress'
+import NProgress from 'components/NProgress'
 
 import ManagementLayout from "layouts/manage.layout"
 import MainLayout from "layouts/main.layout"
 import { getUserFromRequest, isInManagementPage } from "utils/tools"
+
+nprogress.configure({ showSpinner: false, easing: 'ease', speed: 800 });
 
 const bigdaddy = OurChildComponent => {
   class HigherOrderComponent extends Component {
@@ -31,12 +35,14 @@ const bigdaddy = OurChildComponent => {
         return (
           <ManagementLayout>
             <OurChildComponent { ...this.props } />
+            <NProgress />
           </ManagementLayout>
         )
       }
       return (
         <MainLayout>
           <OurChildComponent { ...this.props } />
+          <NProgress />
         </MainLayout>
       )
     }

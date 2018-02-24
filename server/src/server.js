@@ -50,7 +50,7 @@ app.prepare()
 
     server.use("/api/users", userRouter)
     server.use("/api/categories", auth.isAuthApi, categoryRouter)
-    server.use("/api/posts", auth.isAuthApi, postRouter)
+    server.use("/api/posts", postRouter)
 
     server.use((req, res, next) => {
       if (dev) req.app = app
@@ -61,6 +61,7 @@ app.prepare()
     server.get("/manage/signup", controller.handleNormalRequest)
     server.get("/manage", auth.isAuthServer, controller.handleNormalRequest)
 
+    server.get("/posts/:postSlug", controller.middlewareGetSinglePost, controller.handleGetPostPage)
     server.get("/", controller.middlewareGetHomepage, controller.handleNormalRequest)
 
     server.get("*", controller.handleNormalRequest)

@@ -1,39 +1,10 @@
-const md = `
-## Quick Start
-
-\`\`\` js
-var i = 0
-function goAway(arg) {
-  let a = {}
-  a.b = "b"
-
-  return a
-}
-\`\`\`
-
-\`\`\` ruby
-def serve_drinks(%User{age: age}) when age >= 21 do
-  # Code that serves drinks!
-end
-
-serve_drinks User.get("John Doe")
-\`\`\`
-`
-
 import React from "react"
 import { Button } from "antd"
-import marked from "marked"
-import hljs from "highlight.js"
+import Link from "next/link"
 
 import Notification from "components/Notification"
 import { pageWrapper } from "utils/wrapper"
-
-// configuration
-marked.setOptions({
-  highlight: function (code) {
-    return hljs.highlightAuto(code).value
-  }
-})
+import { hpInitialHomepageData } from "actions"
 
 class Index extends React.Component {
   static async getInitialProps(ctx) {
@@ -43,28 +14,29 @@ class Index extends React.Component {
 
     if (ctx.isServer) {
       _toClient = ctx.req._toClient
+      ctx.store.dispatch(hpInitialHomepageData(_toClient))
     }
 
     const sendString = "I Got You in Server! Dont believe? You can view page source and find me there!..."
-    return { isServer: ctx.isServer, _toClient }
+    return { isServer: ctx.isServer }
   }
 
   renderListOfPost = () => {
-    if (!this.props._toClient || !this.props._toClient.posts) return
-    return this.props._toClient.posts.map((ele) => {
+    if (!this.props.posts || !this.props.posts.postList) return
+    return this.props.posts.postList.map((ele) => {
       return (
         <li key={ele._id} style={{ listStyle: "none" }}>
           <span style={{ color: "#666" }}> 14 Nov 2018 > </span>
-          <a>{ele.title}</a>
+          <Link href={`/posts?postSlug=${ele.slug}`} as={`/posts/${ele.slug}`}><a>{ele.title}</a></Link>
         </li>
       )
     })
   }
 
   renderListOfCategories = () => {
-    if (!this.props._toClient || !this.props._toClient.categories) return
+    if (!this.props.categories || !this.props.categories.categoryList) return
 
-    return this.props._toClient.categories.map((ele) => {
+    return this.props.categories.categoryList.map((ele) => {
       return (
         <li key={ele._id} style={{ listStyle: "none" }}>
           {ele.name} <span style={{ color: "#666" }}>({ele.posts.length})</span>
@@ -74,7 +46,6 @@ class Index extends React.Component {
   }
 
   render() {
-    console.log(this.props._toClient);
     return (
       <div className="syn-content" style={{ maxWidth: 700, margin: "30px auto" }}>
         <h2 style={{ color: "#ff6786" }}>New Posts</h2>
@@ -91,18 +62,37 @@ class Index extends React.Component {
             {this.renderListOfCategories()}
           </ul>
         </div>
-
-        <div className="markdown-content">
-          <div dangerouslySetInnerHTML={{ __html: marked(md) }} />
-        </div>
       </div>
     )
   }
 }
 
+// const md = `
+// ## Quick Start
+
+// \`\`\` js
+// var i = 0
+// function goAway(arg) {
+//   let a = {}
+//   a.b = "b"
+
+//   return a
+// }
+// \`\`\`
+
+// \`\`\` ruby
+// def serve_drinks(%User{age: age}) when age >= 21 do
+//   # Code that serves drinks!
+// end
+
+// serve_drinks User.get("John Doe")
+// \`\`\`
+// `
+
 const mapStateToProps = state => {
   return {
-
+    categories: state.categories.ui,
+    posts: state.posts.ui
   }
 }
 

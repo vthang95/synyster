@@ -51,8 +51,30 @@ const middlewareGetHomepage = (req, res, next) => {
   })
 }
 
+const middlewareGetSinglePost = (req, res, next) => {
+  const { postSlug } = req.params
+
+  postController._getSinglePost(postSlug, (err, { success, doc, msg }) => {
+    if (err || success === false) {
+      req._err = err
+      req._err.msg = msg
+      return next()
+    }
+
+    req._post = doc
+    return next()
+  })
+}
+
+const handleGetPostPage = (req, res) => {
+  if (dev) return req.app.render(req, res, '/posts', req.params)
+  return app.render(req, res, '/posts', req.params)
+}
+
 module.exports = {
   handleNormalRequest,
   handleNextRequest,
-  middlewareGetHomepage
+  middlewareGetHomepage,
+  handleGetPostPage,
+  middlewareGetSinglePost
 }

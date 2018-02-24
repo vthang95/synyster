@@ -3,7 +3,7 @@ import axios from "axios"
 export const sendGet = (url, params, _token) => {
   let token
 
-  if (!_token) token = localStorage.getItem("jwt")
+  if (!_token) token = localStorage.getItem("token")
     else token = _token
 
   return new Promise((resolve, reject) => {
@@ -22,7 +22,7 @@ export const sendGet = (url, params, _token) => {
 export const sendPost = (url, params, data, _token) => {
   let token
 
-  if (!_token) token = localStorage.getItem("jwt")
+  if (!_token) token = localStorage.getItem("token")
     else token = _token
 
   return new Promise((resolve, reject) => {
@@ -42,7 +42,7 @@ export const sendPost = (url, params, data, _token) => {
 export const sendPut = (url, params, data, _token) => {
   let token
 
-  if (!_token) token = localStorage.getItem("jwt")
+  if (!_token) token = localStorage.getItem("token")
     else token = _token
 
   return new Promise((resolve, reject) => {
@@ -62,7 +62,7 @@ export const sendPut = (url, params, data, _token) => {
 export const sendDelete = (url, params, _token) => {
   let token
 
-  if (!_token) token = localStorage.getItem("jwt")
+  if (!_token) token = localStorage.getItem("token")
     else token = _token
 
   return new Promise((resolve, reject) => {
