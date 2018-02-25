@@ -62,7 +62,6 @@ const bigdaddy = OurChildComponent => {
     getTitle = () => {
       const pageInfo = OurChildComponent.pageInfo
       const postDocument = this.props.postDocument
-      console.log("this", this.props);
       if (pageInfo && pageInfo.title) return pageInfo.title
       if (postDocument && postDocument.title) return postDocument.title
       return "vthangit - code your life"

@@ -14,19 +14,19 @@ class MainLayout extends Component {
             </div>
 
             <div className="syn-header__navbar">
-              <Link href="/"><a style={{ fontSize: 28, fontWeight: 600 }}>Synyster</a></Link>
+              <Link prefetch href="/"><a style={{ fontSize: 28, fontWeight: 600 }}>Synyster</a></Link>
               <nav>
                 <span className="nav-item">
-                  <Link href="/"><a>Home</a></Link>
+                  <Link prefetch href="/"><a>Home</a></Link>
                 </span>
                 <span className="nav-item">
-                  <Link href="/about"><a>About</a></Link>
+                  <Link prefetch href="/about"><a>About</a></Link>
                 </span>
                 <span className="nav-item">
-                  <Link href="/projects"><a>Projects</a></Link>
+                  <Link prefetch href="/projects"><a>Projects</a></Link>
                 </span>
                 <span  className="nav-item">
-                  <Link href="/friend-sites"><a>Friend sites</a></Link>
+                  <Link prefetch href="/friend-sites"><a>Friend sites</a></Link>
                 </span>
               </nav>
             </div>
