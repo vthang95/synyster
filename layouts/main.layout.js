@@ -24,13 +24,6 @@ class MainLayout extends Component {
                 </div>
               </div>
             </div>
-
-            <p style={{ hyphens: "auto" }}>
-              My name is Tran Viet Thang. I was an auditor. But with the passion for programming, I'm starting a new road to become a software engineer.
-            </p>
-            <p>
-              Find me on <i className="fa fa-facebook"></i>, <i className="fa fa-github"></i>, <i className="fa fa-twitter"></i>
-            </p>
           </div>
         </header>
 

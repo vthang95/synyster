@@ -61,6 +61,14 @@ class Index extends React.Component {
   render() {
     return (
       <div className="syn-content" style={{ maxWidth: 600, margin: "30px auto" }}>
+        <div className="bio">
+          <p style={{ hyphens: "auto" }}>
+            My name is Tran Viet Thang. I was an auditor. But with the passion for programming, I'm starting a new road to become a software engineer.
+          </p>
+          <p>
+            Find me on <i className="fa fa-facebook"></i>, <i className="fa fa-github"></i>, <i className="fa fa-twitter"></i>
+          </p>
+        </div>
         <h2 style={{ color: "#fb8105" }}>New Posts</h2>
         <div className="syn-content__posts">
           <ul style={{ padding: 0, lineHeight: "32px" }}>
