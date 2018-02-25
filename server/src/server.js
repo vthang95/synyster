@@ -66,6 +66,9 @@ app.prepare()
     server.get("/posts/:postSlug", controller.middlewareGetSinglePost, controller.handleGetPostPage)
     server.get("/", controller.middlewareGetHomepage, controller.handleNormalRequest)
 
+    server.get("/favicon.ico", (req, res) => {
+      return res.sendFile("/static/favicon.ico")
+    })
     server.get("*", controller.handleNormalRequest)
 
     server.listen(server.get("port"), (err) => {

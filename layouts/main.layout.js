@@ -10,7 +10,7 @@ class MainLayout extends Component {
         <header className="syn-header">
           <div className="syn-header__wrapper">
             <div className="logo">
-              <img src="/static/images/logo1.png" width="60px" height="auto" />
+              <img src="/static/images/guitar.png" width="60px" height="auto" />
             </div>
 
             <div className="syn-header__navbar">

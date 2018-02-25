@@ -74,8 +74,11 @@ const bigdaddy = OurChildComponent => {
             <meta charSet="utf-8" />
             <meta httpEquiv="x-ua-compatible" content="ie=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>{this.getTitle()}</title>
             <meta name="description" content="A boilerplate for server side rendering with react and nextjs" />
+
+            <title>{this.getTitle()}</title>
+
+            <link href="/static/fav.png" type="image/x-icon" sizes="32x32 16x16" rel="icon" />
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/paraiso-dark.min.css" />
             <link href="/static/dist/highlight.css" rel="stylesheet" />
