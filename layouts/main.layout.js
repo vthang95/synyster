@@ -1,22 +1,44 @@
 import { Component } from "react"
 import { connect } from "react-redux"
 import Router from "next/router"
+import Link from "next/link"
 
 class MainLayout extends Component {
   render() {
     return (
-      <div className="main-layout">
-        <div className="main-layout-bio" style={{ textAlign: "center", margin: 30 }}>
-          <h1 onClick={() => Router.push("/")}>cactus</h1>
-          <div className="bio-text" style={{ maxWidth: 500, margin: "auto" }}>
-            Welcome to my blog! This is your very first post. Check documentation for more info.
-            If you get any problems when using Synyster, you can find the answer in troubleshooting or you can ask me on GitHub.
-          </div>
-        </div>
-        <br />
-        {this.props.children}
+      <div className="main-layout" style={{ margin: "0 10px" }}>
+        <header className="main-layout-bio" style={{ maxWidth: 600, margin: "62px auto 0px" }}>
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+            <div className="nav" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginBottom: 20 }}>
+              <div className="logo">
+                <img src="/static/images/logo1.png" width="60px" height="auto" />
+              </div>
 
-        <footer style={{ maxWidth: 700, margin: "0 auto", height: "auto" }}>
+              <div style={{ margin: "0px 25px", lineHeight: "25px" }}>
+                <Link href="/"><a style={{ fontSize: 28, fontWeight: 600 }}>Synyster</a></Link>
+                <div>
+                  <span style={{ color: "#ff6786", padding: "0 15px 0 0", borderRight: "1px solid #666" }}>Home</span>
+                  <span style={{ color: "#ff6786", padding: "0 15px", borderRight: "1px solid #666" }}>About</span>
+                  <span style={{ color: "#ff6786", padding: "0 15px", borderRight: "1px solid #666" }}>Projects</span>
+                  <span style={{ color: "#ff6786", padding: "0 15px" }}>Redirect</span>
+                </div>
+              </div>
+            </div>
+
+            <p style={{ hyphens: "auto" }}>
+              My name is Tran Viet Thang. I was an auditor. But with the passion for programming, I'm starting a new road to become a software engineer.
+            </p>
+            <p>
+              Find me on <i className="fa fa-facebook"></i>, <i className="fa fa-github"></i>, <i className="fa fa-twitter"></i>
+            </p>
+          </div>
+        </header>
+
+        <div className="main-layout-content">
+          {this.props.children}
+        </div>
+
+        <footer style={{ maxWidth: 600, margin: "0 auto", height: "auto" }}>
           <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#666", padding: "10px 0" }}>
             <span>
               Copyright © 2018 Tran Viet Thang

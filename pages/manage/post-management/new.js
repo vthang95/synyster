@@ -6,7 +6,7 @@ import { sendPost } from "utils/request"
 
 import { pageWrapper } from "utils/wrapper"
 
-class ManagePostPage extends Component {
+class ManageNewPostPage extends Component {
   constructor(props) {
     super(props)
 
@@ -25,16 +25,21 @@ class ManagePostPage extends Component {
   render() {
     return (
       <div style={{ maxWidth: 700, margin: "30px auto" }}>
-        <Link href="/manage">
+        <Link href="/manage/post-management">
           <a><h3>Back</h3></a>
         </Link>
+        <h3>Title</h3>
+        <input onChange={e => this.setState({ title: e.target.value })} style={{ width: "100%", height: 32 }} />
 
-        <Link href="/manage/post-management/new">
-          <a><h3>Create new post</h3></a>
-        </Link>
+        <h3>Content</h3>
+        <textarea
+          onChange={e => this.setState({ content: e.target.value })}
+          style={{ backgroundColor: "#d1d1d1", borderColor: "#d1d1d1", fontSize: 14, width: "100%", minHeight: 300 }}
+        /><br />
+        <button onClick={() => this.handleCreateNewPost()}>Submit</button>
       </div>
     )
   }
 }
 
-export default pageWrapper(null)(ManagePostPage)
+export default pageWrapper(null)(ManageNewPostPage)

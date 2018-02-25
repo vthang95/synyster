@@ -28,7 +28,7 @@ class PostPage extends Component {
   render() {
     const postDocument = this.props.postDocument
     return (
-      <div className="syn-content" style={{ maxWidth: 700, margin: "30px auto" }}>
+      <div className="syn-content" style={{ maxWidth: 600, margin: "30px auto" }}>
         <h2>{ postDocument && postDocument.title }</h2>
 
         <div className="markdown-content">

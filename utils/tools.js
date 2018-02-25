@@ -6,9 +6,10 @@ const getUserFromRequest = req => {
 }
 
 const isInManagementPage = ({ req, isServer }) => {
-  const condition = req && req.route && req.route.path &&
-                    typeof req.route.path === "string" &&
-                    req.route.path.indexOf("/manage") >= 0
+  const condition = req && req._parsedUrl && req._parsedUrl.pathname &&
+                    typeof req._parsedUrl.pathname === "string" &&
+                    req._parsedUrl.pathname.indexOf("/manage") >= 0
+
   if (condition) return true
   if (!isServer && typeof window !== "undefined") return location.pathname.indexOf("/manage") !== -1
   return false

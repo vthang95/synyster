@@ -57,6 +57,8 @@ app.prepare()
       next()
     })
 
+    server.get("/manage/post-management/new", controller.handleNextRequest)
+    server.get("/manage/post-management", controller.handleNextRequest)
     server.get("/manage/login", controller.handleNormalRequest)
     server.get("/manage/signup", controller.handleNormalRequest)
     server.get("/manage", auth.isAuthServer, controller.handleNormalRequest)

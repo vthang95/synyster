@@ -23,7 +23,6 @@ const bigdaddy = OurChildComponent => {
           isAuthServer = true
           verifiedUser = user
         }
-        // TODO: check: if isAuthServer but lost info in localStorage -> rewrite
         if (!user && !ctx.isServer) Router.replace("/manage/login")
       }
 
@@ -41,9 +40,6 @@ const bigdaddy = OurChildComponent => {
       if (isAuthServer && (!user || !token)) {
         localStorage.setItem("user", JSON.stringify(verifiedUser))
         localStorage.setItem("token", verifiedUser.token)
-      } else if (!isAuthServer) {
-        localStorage.removeItem("user")
-        localStorage.removeItem("token")
       }
     }
 
@@ -71,12 +67,13 @@ const bigdaddy = OurChildComponent => {
             <meta charSet="utf-8" />
             <meta httpEquiv="x-ua-compatible" content="ie=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>Simple Nextjs Boilerplate!</title>
+            <title>Synyster!</title>
             <meta name="description" content="A boilerplate for server side rendering with react and nextjs" />
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/paraiso-dark.min.css" />
             <link href="/static/dist/highlight.css" rel="stylesheet" />
             <link href="/static/dist/main.css" rel="stylesheet" />
+            <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
             <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
           </Head>
           <LocaleProvider locale={vi}>
