@@ -1,0 +1,34 @@
+.syn-layout {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.syn-header {
+  margin: 62px 0 0;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__navbar {
+    margin: 0 25px;
+    line-height: 25px;
+
+    .nav-item {
+      color: $color-syn-pink;
+      padding: 0 15px 0;
+      border-right: 1px solid $color-text;
+
+      &:first-child {
+        padding-left: 0;
+      }
+      &:last-child {
+        border: none
+      }
+    }
+  }
+}

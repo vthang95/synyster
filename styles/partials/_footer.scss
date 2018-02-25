@@ -1,0 +1,17 @@
+.syn-footer {
+  height: auto;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    color: $color-syn-dark;
+    padding: 10px 0;
+    font-size: 12px !important;
+  }
+  @media screen and (max-width: 460px) {
+    .syn-footer__wrapper {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+}

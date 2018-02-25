@@ -51,7 +51,7 @@ class Index extends React.Component {
   }
 
   renderListOfTags = () => {
-    const fake = ["elixir", "js", "javascript", "algorithms", "monoid", "isomorphic"]
+    const fake = ["elixir", "js", "algorithms", "monoid"]
 
     return fake.map(ele => {
       return <span key={ele} style={{ padding: "3px 8px", border: "1px solid #666", marginRight: 5 }}>{ele}</span>
@@ -66,7 +66,9 @@ class Index extends React.Component {
             My name is Tran Viet Thang. I was an auditor. But with the passion for programming, I'm starting a new road to become a software engineer.
           </p>
           <p>
-            Find me on <i className="fa fa-facebook"></i>, <i className="fa fa-github"></i>, <i className="fa fa-twitter"></i>
+            Find me
+            on <a href="//facebook.com/vietthang95" target="_blank"><i className="fa fa-facebook"></i></a>
+            , <a href="//github.com/vthang95" target="_blank"><i className="fa fa-github"></i></a>
           </p>
         </div>
         <h2 style={{ color: "#fb8105" }}>New Posts</h2>

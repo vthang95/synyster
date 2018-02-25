@@ -6,38 +6,44 @@ import Link from "next/link"
 class MainLayout extends Component {
   render() {
     return (
-      <div className="main-layout" style={{ margin: "0 10px" }}>
-        <header className="main-layout-bio" style={{ maxWidth: 600, margin: "62px auto 0px" }}>
-          <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
-            <div className="nav" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", marginBottom: 20 }}>
-              <div className="logo">
-                <img src="/static/images/logo1.png" width="60px" height="auto" />
-              </div>
+      <div className="syn-layout">
+        <header className="syn-header">
+          <div className="syn-header__wrapper">
+            <div className="logo">
+              <img src="/static/images/logo1.png" width="60px" height="auto" />
+            </div>
 
-              <div style={{ margin: "0px 25px", lineHeight: "25px" }}>
-                <Link href="/"><a style={{ fontSize: 28, fontWeight: 600 }}>Synyster</a></Link>
-                <div>
-                  <span style={{ color: "#ff6786", padding: "0 15px 0 0", borderRight: "1px solid #666" }}>Home</span>
-                  <span style={{ color: "#ff6786", padding: "0 15px", borderRight: "1px solid #666" }}>About</span>
-                  <span style={{ color: "#ff6786", padding: "0 15px", borderRight: "1px solid #666" }}>Projects</span>
-                  <span style={{ color: "#ff6786", padding: "0 15px" }}>Redirect</span>
-                </div>
-              </div>
+            <div className="syn-header__navbar">
+              <Link href="/"><a style={{ fontSize: 28, fontWeight: 600 }}>Synyster</a></Link>
+              <nav>
+                <span className="nav-item">
+                  <Link href="/"><a>Home</a></Link>
+                </span>
+                <span className="nav-item">
+                  <Link href="/about"><a>About</a></Link>
+                </span>
+                <span className="nav-item">
+                  <Link href="/projects"><a>Projects</a></Link>
+                </span>
+                <span  className="nav-item">
+                  <Link href="/friend-sites"><a>Friend sites</a></Link>
+                </span>
+              </nav>
             </div>
           </div>
         </header>
 
-        <div className="main-layout-content">
+        <div className="syn-layout__content">
           {this.props.children}
         </div>
 
-        <footer style={{ maxWidth: 600, margin: "0 auto", height: "auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#666", padding: "10px 0" }}>
+        <footer className="syn-footer">
+          <div className="syn-footer__wrapper">
             <span>
               Copyright © 2018 Tran Viet Thang
             </span>
             <div>
-              <span>Based on cactus-dark theme</span>
+              <span>Based on cactus-dark</span>
             </div>
           </div>
         </footer>
