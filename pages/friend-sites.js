@@ -8,6 +8,10 @@ class RedirectPage extends Component {
     return {}
   }
 
+  static pageInfo = {
+    title: "A list of good blogs to read"
+  }
+
   render() {
     return (
       <div className="syn-content" style={{ maxWidth: 600, margin: "30px auto" }}>

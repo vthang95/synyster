@@ -8,6 +8,10 @@ class AboutPage extends Component {
     return {}
   }
 
+  static pageInfo = {
+    title: "About me - Trần Việt Thắng"
+  }
+
   render() {
     return (
       <div className="syn-content" style={{ maxWidth: 600, margin: "30px auto" }}>

@@ -8,6 +8,10 @@ class ProjectPage extends Component {
     return {}
   }
 
+  static pageInfo = {
+    title: "A list of my projects"
+  }
+
   render() {
     return (
       <div className="syn-content" style={{ maxWidth: 600, margin: "30px auto" }}>

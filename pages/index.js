@@ -25,6 +25,10 @@ class Index extends React.Component {
     return { isServer: ctx.isServer }
   }
 
+  static pageInfo = {
+    title: "vthangit - code your life"
+  }
+
   renderListOfPost = () => {
     if (!this.props.posts) return
     return this.props.posts.map((ele) => {

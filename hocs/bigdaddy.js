@@ -28,7 +28,6 @@ const bigdaddy = OurChildComponent => {
 
       const childProps = OurChildComponent.getInitialProps ? await OurChildComponent.getInitialProps(ctx) : {}
 
-
       return { ...childProps, isAuthServer, isInAdminPage, verifiedUser }
     }
 
@@ -60,6 +59,15 @@ const bigdaddy = OurChildComponent => {
       )
     }
 
+    getTitle = () => {
+      const pageInfo = OurChildComponent.pageInfo
+      const postDocument = this.props.postDocument
+      console.log("this", this.props);
+      if (pageInfo && pageInfo.title) return pageInfo.title
+      if (postDocument && postDocument.title) return postDocument.title
+      return "vthangit - code your life"
+    }
+
     render() {
       return (
         <div>
@@ -67,7 +75,7 @@ const bigdaddy = OurChildComponent => {
             <meta charSet="utf-8" />
             <meta httpEquiv="x-ua-compatible" content="ie=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>Synyster!</title>
+            <title>{this.getTitle()}</title>
             <meta name="description" content="A boilerplate for server side rendering with react and nextjs" />
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/paraiso-dark.min.css" />
