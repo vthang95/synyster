@@ -1,6 +1,7 @@
 import React from "react"
 import { Button } from "antd"
 import Link from "next/link"
+import moment from "moment"
 
 import Notification from "components/Notification"
 import { pageWrapper } from "utils/wrapper"
@@ -29,7 +30,7 @@ class Index extends React.Component {
     return this.props.posts.map((ele) => {
       return (
         <li key={ele._id} style={{ listStyle: "none" }}>
-          <span style={{ color: "#666" }}> 14 Nov 2018 > </span>
+          <span style={{ color: "#666" }}> {moment(ele.createdAt).locale('en').format('DD MMM YYYY')} > </span>
           <Link href={`/posts?postSlug=${ele.slug}`} as={`/posts/${ele.slug}`}>
             <a style={{ color: "", textDecoration: "none" }}>{ele.title}</a>
           </Link>

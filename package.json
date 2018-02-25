@@ -10,7 +10,7 @@
     "dev": "cross-env NODE_ENV=devolopment nodemon --watch ./server/src ./server/src/server.js & npm run build-scss:watch",
     "start": "cross-env NODE_ENV=production node ./server/src/server.js",
     "analyze": "cross-env ANALYZE=1 next build",
-    "heroku-postbuild": "rm -fr ./build & next build",
+    "prestart": "rm -fr ./build & next build",
     "deploy-heroku": "git push heroku master"
   },
   "repository": {
