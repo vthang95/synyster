@@ -1,4 +1,4 @@
-import { sendGet } from "utils/request"
+import axios from "axios"
 
 // hp prefix
 export const hpInitialHomepageData = _toClient => {
@@ -9,9 +9,12 @@ export const hpInitialHomepageData = _toClient => {
 }
 
 export const hpGetPosts = () => {
-  return (dispatch) => sendGet("/api/posts")
+  console.log("here");
+  return (dispatch) => axios.get("/api/posts")
     .then(res => {
+      console.log(res);
       if (res.status === 200 && res.data.success === true) {
+        console.log("hẻ");
         dispatch({
           type: "HOMEPAGE::GET_POSTS",
           payload: res.data.docs
@@ -19,12 +22,14 @@ export const hpGetPosts = () => {
       }
     })
     .catch(err => {
+      console.log(err);
+      console.log(err.response);
       // TODO: HANDLE error
     })
 }
 
 export const hpGetCategories = () => {
-  return (dispatch) => sendGet("/api/categories")
+  return (dispatch) => axios.get("/api/categories")
     .then(res => {
       if (res.status === 200 && res.data.success === true) {
         dispatch({
