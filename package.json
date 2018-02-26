@@ -4,13 +4,13 @@
   "description": "A simple blog",
   "main": "server.js",
   "scripts": {
-    "build": "next build && npm run build:scss",
-    "build:scss": "node-sass styles/main.scss static/dist/main$(git rev-parse HEAD).css",
+    "build": "npm run build:scss && next build",
+    "build:scss": "node-sass styles/main.scss static/build/main${SOURCE_VERSION:-$(git rev-parse HEAD)}.css",
     "build-scss:watch": "node-sass -w styles/ -o static/dist/",
     "dev": "cross-env NODE_ENV=devolopment nodemon --watch ./server/src ./server/src/server.js & npm run build-scss:watch",
     "start": "cross-env NODE_ENV=production node ./server/src/server.js",
     "analyze": "cross-env ANALYZE=1 next build",
-    "prestart": "rm -fr ./build & next build",
+    "prestart": "rm -fr ./build & npm run build:scss & next build",
     "deploy-heroku": "git push heroku master"
   },
   "repository": {

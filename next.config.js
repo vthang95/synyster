@@ -5,8 +5,9 @@ const { ANALYZE } = process.env
 // :TODO -lp use extract-text-webpack-plugin
 
 let commitHash = require('child_process')
-  .execSync('git rev-parse HEAD')
+  .execSync('echo ${SOURCE_VERSION:-$(git rev-parse HEAD)}')
   .toString();
+console.log("commit hash", commitHash);
 
 
 module.exports = {

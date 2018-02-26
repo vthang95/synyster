@@ -68,8 +68,8 @@ const bigdaddy = OurChildComponent => {
     }
 
     getMainStyle = () => {
-      if (process.env.NODE_ENV === "production") return "main" + __COMMIT_HASH__ + ".css"
-      return "main.css"
+      if (process.env.NODE_ENV === "production") return "build/main" + __COMMIT_HASH__ + ".css"
+      return "dist/main.css"
     }
 
     render() {
@@ -87,7 +87,7 @@ const bigdaddy = OurChildComponent => {
 
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/paraiso-dark.min.css" />
             <link href="/static/dist/highlight.css" rel="stylesheet" />
-            <link href={`/static/dist/${this.getMainStyle()}`} rel="stylesheet" />
+            <link href={`/static/${this.getMainStyle()}`} rel="stylesheet" />
             <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
             <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
           </Head>
