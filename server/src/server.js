@@ -48,6 +48,13 @@ app.prepare()
     server.use(expressValidator())
     server.locals.pretty = true
 
+    server.get('*', (req, res, next) => {
+      if(req.headers['x-forwarded-proto']!='https')
+        res.redirect('https://localhost:8090'+req.url)
+      else
+        next() /* Continue to other routes if we're not redirecting */
+    })
+
     server.use("/api/users", userRouter)
     server.use("/api/categories", auth.isAuthApi, categoryRouter)
     server.use("/api/posts", postRouter)
