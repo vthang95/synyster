@@ -68,7 +68,7 @@ const bigdaddy = OurChildComponent => {
     }
 
     getMainStyle = () => {
-      if (process.env.NODE_ENV === "production") return "build/main" + __COMMIT_HASH__ + ".css"
+      if (process.env.NODE_ENV === "production") return "build/main_" + __COMMIT_HASH__ + ".css"
       return "dist/main.css"
     }
 
