@@ -33,8 +33,8 @@ class Index extends React.Component {
     if (!this.props.posts) return
     return this.props.posts.map((ele) => {
       return (
-        <li key={ele._id} style={{ listStyle: "none" }}>
-          <span style={{ color: "#666" }}> {moment(ele.createdAt).locale('en').format('DD MMM YYYY')} > </span>
+        <li key={ele._id} className="syn-content__list-item">
+          <span> {moment(ele.createdAt).locale('en').format('DD MMM YYYY')} > </span>
           <Link href={`/posts?postSlug=${ele.slug}`} as={`/posts/${ele.slug}`}>
             <a style={{ color: "", textDecoration: "none" }}>{ele.title}</a>
           </Link>
@@ -65,10 +65,11 @@ class Index extends React.Component {
 
   render() {
     return (
-      <div className="syn-content" style={{ maxWidth: 600, margin: "30px auto" }}>
+      <div className="syn-content">
         <div className="bio">
           <p style={{ hyphens: "auto" }}>
-            My name is Tran Viet Thang. I was an auditor. But with the passion for programming, I'm starting a new road to become a software engineer.
+            My name is Tran Viet Thang. I was an auditor. But with the passion for programming,
+            I'm starting a new road to become a software engineer.
           </p>
           <p>
             Find me
@@ -76,22 +77,22 @@ class Index extends React.Component {
             , <a href="//github.com/vthang95" target="_blank"><i className="fa fa-github"></i></a>
           </p>
         </div>
-        <h2 style={{ color: "#fb8105" }}>New Posts</h2>
+        <h2>New Posts</h2>
         <div className="syn-content__posts">
-          <ul style={{ padding: 0, lineHeight: "32px" }}>
+          <ul className="syn-content__list">
             {this.renderListOfPost()}
           </ul>
         </div>
 
-        <h2 style={{ color: "#fb8105" }}>Categories</h2>
+        <h2>Categories</h2>
         <div className="syn-content__categories">
-          <ul style={{ padding: 0, lineHeight: "28px" }}>
-            <li style={{ listStyle: "none" }} key="all">All <span style={{ color: "#666" }}>(0)</span></li>
+          <ul className="syn-content__list">
+            <li className="syn-content__list-item" key="all">All <span>(0)</span></li>
             {this.renderListOfCategories()}
           </ul>
         </div>
 
-        <h2 style={{ color: "#fb8105" }}>Tags</h2>
+        <h2>Tags</h2>
         <div className="syn-content__tags">
           {this.renderListOfTags()}
         </div>

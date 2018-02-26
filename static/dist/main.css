@@ -267,9 +267,20 @@ body {
       flex-direction: column;
       text-align: center; } }
 
+.syn-content {
+  margin: 30px auto; }
+  .syn-content__list {
+    padding: 0;
+    line-height: 32px; }
+    .syn-content__list-item {
+      list-style: none; }
+      .syn-content__list-item span {
+        color: #666; }
+
 body {
   height: 100%;
   font-size: 14px;
+  display: block !important;
   margin: 0;
   padding: 0; }
   body .hero {
@@ -290,3 +301,6 @@ body {
 
 .syn-wrapper {
   margin: 10px; }
+
+h1, h2, h3, h4, h5 {
+  color: #fb8105 !important; }
