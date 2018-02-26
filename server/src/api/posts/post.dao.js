@@ -3,6 +3,8 @@ const PostModel = require("./post.schema")
 const getPosts = callback => {
   PostModel
     .find({ isDeleted: false })
+    .sort('-createdAt')
+    .lean()
     .exec((err, docs) => {
       if (err) return callback(err, { success: false, msg: "Something went wrong", errors: err })
       if (docs.length === 0) return callback(null, { success: false, msg: "There is no post to show", errors: null })
@@ -13,6 +15,8 @@ const getPosts = callback => {
 const getSinglePostBySlug = (slug, callback) => {
   PostModel
     .findOne({ slug })
+    .sort('-createdAt')
+    .lean()
     .exec((err, doc) => {
       if (err) return callback(err, { success: false, status: 422, msg: 'An error occurred when loading post!', errors: err })
       if (!doc) return callback(null, { success: false, status: 200, msg: 'This post is not exist', errors: null })
