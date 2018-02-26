@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "next build && npm run build:scss",
-    "build:scss": "node-sass styles/main.scss static/dist/main.css",
+    "build:scss": "node-sass styles/main.scss static/dist/main$(git rev-parse HEAD).css",
     "build-scss:watch": "node-sass -w styles/ -o static/dist/",
     "dev": "cross-env NODE_ENV=devolopment nodemon --watch ./server/src ./server/src/server.js & npm run build-scss:watch",
     "start": "cross-env NODE_ENV=production node ./server/src/server.js",

@@ -4,6 +4,11 @@ const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 const { ANALYZE } = process.env
 // :TODO -lp use extract-text-webpack-plugin
 
+let commitHash = require('child_process')
+  .execSync('git rev-parse HEAD')
+  .toString();
+
+
 module.exports = {
   webpack: (config, {dev}) => {
 
@@ -96,7 +101,8 @@ module.exports = {
     if (process.env.NODE_ENV === "production") {
       config.plugins.push(
         new webpack.DefinePlugin({
-          'process.env.NODE_ENV': JSON.stringify('production')
+          'process.env.NODE_ENV': JSON.stringify('production'),
+          __COMMIT_HASH__: JSON.stringify(commitHash),
         }),
         new webpack.optimize.UglifyJsPlugin()
       )
