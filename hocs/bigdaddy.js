@@ -79,7 +79,11 @@ const bigdaddy = OurChildComponent => {
             <meta charSet="utf-8" />
             <meta httpEquiv="x-ua-compatible" content="ie=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <meta name="description" content="A boilerplate for server side rendering with react and nextjs" />
+            <meta name="description" content="Blog ghi lại kiến thức của về lập trình, ghi lại chặng đường trở thành một software engineer của tôi" />
+
+            <meta property="og:url" content="http://vthangit.com/" />
+            <meta property="og:title" content={this.getTitle()} />
+            <meta property="og:description" content="Blog ghi lại kiến thức của về lập trình, ghi lại chặng đường trở thành một software engineer của tôi" />
 
             <title>{this.getTitle()}</title>
 
