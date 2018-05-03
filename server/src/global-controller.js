@@ -56,7 +56,7 @@ const middlewareGetSinglePost = (req, res, next) => {
 
   postController._getSinglePost(postSlug, (err, { success, doc, msg }) => {
     if (err || success === false) {
-      req._err = err
+      req._err = err || {}
       req._err.msg = msg
       return next()
     }
